@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>You're Making Me Blush</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<script>
+  // Generate floating hearts at random positions & intervals
+  const heartsContainer = document.createElement('div');
+  heartsContainer.id = 'hearts';
+  document.body.appendChild(heartsContainer);
+
+  function createHeart() {
+    const heart = document.createElement('div');
+    heart.classList.add('heart');
+    heart.style.left = Math.random() * 100 + 'vw';
+    heart.style.top = '110vh'; // start slightly below screen
+
+    // Random animation duration between 6-12 seconds
+    heart.style.animationDuration = (6 + Math.random() * 6) + 's';
+
+    heartsContainer.appendChild(heart);
+
+    // Remove heart after animation ends
+    heart.addEventListener('animationend', () => {
+      heart.remove();
+    });
+  }
+
+  // Create hearts every 400ms
+  setInterval(createHeart, 400);
+</script>
+
+<body>
+  <div class="container">
+    <button class="music-control" id="musicControl">Play Music 🎵</button>
+    <audio id="backgroundMusic" loop>
+      <source src="https://cdn.pixabay.com/download/audio/2022/03/28/audio_53eb2c43bf.mp3?filename=romantic-guitar-melody-6256.mp3" type="audio/mpeg" />
+      Your browser does not support the audio element.
+    </audio>
+
+    <h1>You're making me blush 😳</h1>
+    <p>It's funny how just the thought of you makes my heart race a little faster. I wasn’t expecting to find someone so charming, but here you are, and I’m completely hooked.</p>
+    <button onclick="window.location.href='page4.html'">Keep going 💗</button>
+  </div>
+
+  <script>
+    const music = document.getElementById('backgroundMusic');
+    const control = document.getElementById('musicControl');
+    let playing = false;
+
+    control.addEventListener('click', () => {
+      if (!playing) {
+        music.play();
+        control.textContent = 'Pause Music 🔇';
+        playing = true;
+      } else {
+        music.pause();
+        control.textContent = 'Play Music 🎵';
+        playing = false;
+      }
+    });
+  </script>
+</body>
+</html>
